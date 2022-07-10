@@ -1,0 +1,41 @@
+<h1 fxLayout fxLayoutAlign="center">Update movement</h1>
+<div class="container" *ngIf="movement$ | async as movement">
+  <form fxLayout="column" (ngSubmit)="onSubmit(movement)">
+    <mat-form-field appearance="fill">
+      <mat-label>name</mat-label>
+      <input matInput type="text" placeholder="name" required name="name" [(ngModel)]="movement.name">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>amount</mat-label>
+      <input matInput type="number" placeholder="amount" required name="amount" [(ngModel)]="movement.amount">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>date</mat-label>
+      <input matInput type="date" placeholder="date" required name="date" [(ngModel)]="movement.date">
+    </mat-form-field>
+
+    <mat-label>movement type</mat-label>
+    <mat-radio-group class="type-radio-group" aria-label="movement type" required name="type" [(ngModel)]="movement.type">
+      <mat-radio-button value="0">expense</mat-radio-button>
+      <mat-radio-button value="1">income</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field appearance="fill" *ngIf="!movement.virtual">
+      <mat-label>movement status</mat-label>
+      <mat-select required value="pending" name="status" [(ngModel)]="movement.status">
+        <mat-option [value]="'pending'">pending</mat-option>
+        <mat-option [value]="'done'">done</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>description</mat-label>
+      <input matInput type="text" placeholder="description" name="description" [(ngModel)]="movement.description">
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" color="primary" style="text-transform: uppercase">update</button>
+  </form>
+</div>

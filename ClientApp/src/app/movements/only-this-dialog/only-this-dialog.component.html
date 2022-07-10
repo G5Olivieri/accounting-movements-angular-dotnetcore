@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>{{data.name}}</h1>
+<div mat-dialog-content>
+  <form (ngSubmit)="close()">
+    <mat-radio-group
+      name="choice"
+      [(ngModel)]="choice"
+      (keyup)="keyup($event)"
+      fxLayout="column"
+      fxLayoutAlign="space-around"
+      style="height: 5rem; padding: 5px"
+    >
+      <mat-radio-button value="0">only this one</mat-radio-button>
+      <mat-radio-button value="1">all from here</mat-radio-button>
+    </mat-radio-group>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" [mat-dialog-close]="choice" style="width: 100%">SUBMIT</button>
+</div>

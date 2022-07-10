@@ -1,0 +1,15 @@
+<h1 fxLayout fxLayoutAlign="center">Login</h1>
+<div class="container">
+  <form fxLayout="column" (submit)="submit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="username" type="text" name="username" [(ngModel)]="username">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" placeholder="password" name="password" [(ngModel)]="password">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">SUBMIT</button>
+  </form>
+</div>

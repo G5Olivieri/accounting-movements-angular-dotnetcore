@@ -1,0 +1,31 @@
+<h1 fxLayout fxLayoutAlign="center">Movements</h1>
+<a mat-raised-button color="primary" [style.width]="'100%'" routerLink="./new">
+  <mat-icon>add</mat-icon>
+  add movement
+</a>
+
+<mat-form-field appearance="fill" style="display: block;">
+  <input matInput type="month" [ngModel]="month" (ngModelChange)="onMonthChange($event)"/>
+</mat-form-field>
+
+<mat-card *ngFor="let movement of movements">
+    <mat-card-title fxLayout fxLayoutAlign="space-between">
+      <div>{{movement.name}}</div>
+      <div
+        [class]="movement.type === 0 ? 'expense' : 'income' ">{{movement.type === 0 ? '-' : '+'}} {{(movement.amount / 100) | currency:'BRL'}}</div>
+    </mat-card-title>
+    <mat-card-subtitle>{{movement.date | date:'dd/MM/yyyy' }}</mat-card-subtitle>
+    <mat-card-actions align="end">
+      <button mat-raised-button color="warn" (click)="deleteMovement(movement)">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <a mat-raised-button color="primary"
+         [routerLink]="['./', movement.id]"
+         [queryParams]="{ virtual: movement.virtual, date: movement.date.toISOString() }">
+        <mat-icon>edit</mat-icon>
+      </a>
+      <button mat-raised-button color="accent" *ngIf="movement.status === 'pending'" (click)="pay(movement)">
+        <mat-icon>check</mat-icon>
+      </button>
+    </mat-card-actions>
+</mat-card>
